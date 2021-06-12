@@ -10,35 +10,27 @@ import CountdownTimer
 
 class ViewController: UIViewController {
 
-    var countDownManager = CountDownManager()
-
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var startButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        let operations: [Operation] = [
-            CountDownOperation(actionBlock: { [weak self] in
-                DispatchQueue.main.async {
-                    self?.label.text = "3"
-                }
-            }),
-            CountDownOperation(actionBlock: { [weak self] in
-                DispatchQueue.main.async {
-                    self?.label.text = "2"
-                }
-            }),
-            CountDownOperation(actionBlock: { [weak self] in
-                DispatchQueue.main.async {
-                    self?.label.text = "1"
-                }
-            })
-        ]
-        self.countDownManager.processAsync(operations) { [weak self] in
-            DispatchQueue.main.async {
-                self?.label.text = "Finish"
-            }
+    @IBAction func startButtontapped(_ sender: Any?) {
+        startCountDown()
+    }
+
+    func startCountDown() {
+        let controller = CountDownController()
+        controller.initialCount = 5
+        controller.tick = { count in
+            debugPrint("Tick: \(count)")
         }
+        controller.completion = { [weak self] in
+            guard let self = self else { return }
+            self.dismiss(animated: true, completion: nil)
+        }
+        present(controller, animated: true, completion: nil)
     }
 }
 

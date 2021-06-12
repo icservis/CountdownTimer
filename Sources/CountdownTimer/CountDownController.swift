@@ -19,6 +19,7 @@ public class CountDownController: UIViewController {
 
     public lazy var countdownLabel: UILabel = {
         let label = UILabel()
+        label.text = nil
         label.font = .init(name: "digital-7", size: 120)
         label.textColor = .white
         label.textAlignment = .center
@@ -29,17 +30,23 @@ public class CountDownController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .init(white: 0.1, alpha: 0.7)
 
+        addCountDownLabel()
+        fireCountDown { [weak self] in
+            self?.completion?()
+        }
+    }
+
+    public func addCountDownLabel() {
         self.view.addSubview(countdownLabel)
         countdownLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             countdownLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
             countdownLabel.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor)
         ])
+    }
 
-        self.countdown(initialCount: self.initialCount) { [weak self] in
-            guard let self = self else { return }
-            self.completion?()
-        }
+    public func fireCountDown(completion: CompletionBlock?) {
+        self.countdown(initialCount: self.initialCount, completion: completion)
     }
 
     public func countdown(initialCount: Int, completion: CompletionBlock?) {
@@ -50,12 +57,40 @@ public class CountDownController: UIViewController {
                         guard let self = self else { return }
                         self.tick?(count)
                         self.countdownLabel.text = "\(count)"
+
+                        let upScaleTransform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+                        let downScaleTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        UIView.animate(
+                            withDuration: 0.25,
+                            delay: 0.0,
+                            usingSpringWithDamping: 0.5,
+                            initialSpringVelocity: 5,
+                            options: UIView.AnimationOptions.curveEaseOut,
+                            animations: {
+                                self.countdownLabel.transform = upScaleTransform
+                                self.view.layoutIfNeeded()
+                            }, completion: { _ in
+                                UIView.animate(
+                                    withDuration: 0.25,
+                                    delay: 0,
+                                    usingSpringWithDamping: 0.5,
+                                    initialSpringVelocity: 5,
+                                    options: UIView.AnimationOptions.curveEaseOut,
+                                    animations: {
+                                        self.countdownLabel.transform = downScaleTransform
+                                        self.view.layoutIfNeeded()
+                                    }
+                                )
+                            }
+                        )
                     }
                 }
             }
         ) {
             DispatchQueue.main.async { [weak self] in
-                self?.tick?(0)
+                guard let self = self else { return }
+                self.countdownLabel.text = nil
+                self.tick?(0)
                 completion?()
             }
         }

@@ -17,10 +17,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func startButtontapped(_ sender: Any?) {
-        startCountDown()
+        startCountDown(completion: nil)
     }
 
-    func startCountDown() {
+    func startCountDown(completion: (() -> Void)?) {
         let controller = CountDownController()
         controller.initialCount = 5
         controller.tick = { count in
@@ -28,9 +28,9 @@ class ViewController: UIViewController {
         }
         controller.completion = { [weak self] in
             guard let self = self else { return }
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: completion)
         }
-        present(controller, animated: true, completion: nil)
+        present(controller, animated: false, completion: nil)
     }
 }
 

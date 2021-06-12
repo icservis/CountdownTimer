@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CountdownTimer
 
 public class CountDownController: UIViewController {
     public typealias CompletionBlock = () -> Void

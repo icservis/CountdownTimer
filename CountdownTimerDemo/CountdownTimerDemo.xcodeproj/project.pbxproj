@@ -18,11 +18,11 @@
 		84059FFD2672A93A003519E1 /* CountdownManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84059FFC2672A93A003519E1 /* CountdownManager.swift */; };
 		84059FFF2672A962003519E1 /* CountdownOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84059FFE2672A962003519E1 /* CountdownOperation.swift */; };
 		8405A0002672A98F003519E1 /* libCountdownTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84059FF52672A8B7003519E1 /* libCountdownTimer.a */; };
-		84129D6626751E48003D0DD4 /* CountDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84129D6526751E48003D0DD4 /* CountDownController.swift */; };
 		84129D74267522A9003D0DD4 /* digital-7 (italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84129D6B26751EB2003D0DD4 /* digital-7 (italic).ttf */; };
 		84129D75267522AC003D0DD4 /* digital-7 (mono italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84129D6826751EB2003D0DD4 /* digital-7 (mono italic).ttf */; };
 		84129D76267522AF003D0DD4 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84129D6926751EB2003D0DD4 /* digital-7 (mono).ttf */; };
 		84129D77267522B1003D0DD4 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84129D6A26751EB2003D0DD4 /* digital-7.ttf */; };
+		84129D78267525AB003D0DD4 /* CountDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84129D6526751E48003D0DD4 /* CountDownController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +149,6 @@
 				84059FBF2672A710003519E1 /* AppDelegate.swift */,
 				84059FC12672A710003519E1 /* SceneDelegate.swift */,
 				84059FC32672A710003519E1 /* ViewController.swift */,
-				84129D6526751E48003D0DD4 /* CountDownController.swift */,
 				84059FC52672A710003519E1 /* Main.storyboard */,
 				84059FC82672A711003519E1 /* Assets.xcassets */,
 				84059FCA2672A711003519E1 /* LaunchScreen.storyboard */,
@@ -188,6 +187,7 @@
 			children = (
 				84059FFC2672A93A003519E1 /* CountdownManager.swift */,
 				84059FFE2672A962003519E1 /* CountdownOperation.swift */,
+				84129D6526751E48003D0DD4 /* CountDownController.swift */,
 			);
 			name = CountdownTimer;
 			path = ../Sources/CountdownTimer;
@@ -361,7 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84059FC42672A710003519E1 /* ViewController.swift in Sources */,
-				84129D6626751E48003D0DD4 /* CountDownController.swift in Sources */,
 				84059FC02672A710003519E1 /* AppDelegate.swift in Sources */,
 				84059FC22672A710003519E1 /* SceneDelegate.swift in Sources */,
 			);
@@ -389,6 +388,7 @@
 			files = (
 				84059FFF2672A962003519E1 /* CountdownOperation.swift in Sources */,
 				84059FFD2672A93A003519E1 /* CountdownManager.swift in Sources */,
+				84129D78267525AB003D0DD4 /* CountDownController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
